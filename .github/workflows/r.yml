@@ -17,7 +17,7 @@ jobs:
             events_to_subscribe: |
                 Microsoft.ContainerRegistry.ImagePushed
             provider_type: "Microsoft.ContainerRegistry/registries/acrtest22"
-            resource_group: "testacr"
+            resource_group: "acrtest"
             pattoken: ${{secrets.PATTOKEN}}
                   
         - name: 'Login via Azure CLI'
