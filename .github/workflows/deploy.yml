@@ -1,0 +1,14 @@
+  
+name: aml-register-model
+
+on:
+  repository_dispatch:
+    types: [containerregistry-imagepushed]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check variables
+        run: |
+          echo "hellooo heree"
