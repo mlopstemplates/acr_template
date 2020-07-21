@@ -9,6 +9,17 @@ jobs:
         - name: 'Checkout GitHub Action'
           uses: actions/checkout@master
           
+        - name: Create Event Subscription
+          id: azure_eventgridsubscriber
+          uses: mlopstemplates/azure_eventgridsubscriber@master
+          with:
+            azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
+            events_to_subscribe: |
+                Microsoft.ContainerRegistry.ImagePushed
+            provider_type: "Microsoft.ContainerRegistry/registries/acrtest22"
+            resource_group: "testacr"
+            pattoken: ${{secrets.PATTOKEN}}
+                  
         - name: 'Login via Azure CLI'
           uses: azure/login@v1
           with:
@@ -22,5 +33,5 @@ jobs:
             password: ${{ secrets.REGISTRY_PASSWORD }}
         - run: |
             docker pull houssemdocker/angular-app:latest
-            docker tag houssemdocker/angular-app:latest ${{ secrets.REGISTRY_LOGIN_SERVER }}/my-app:v1
-            docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/my-app:v1
+            docker tag houssemdocker/angular-app:latest ${{ secrets.REGISTRY_LOGIN_SERVER }}/my-app2:v1
+            docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/my-app2:v1
