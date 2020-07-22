@@ -13,8 +13,6 @@ jobs:
       env:
         PAYLOAD_CONTEXT: ${{ toJson(github.event.client_payload.data) }}
       run: |
-          echo ${{ env.PAYLOAD_CONTEXT }}
-          echo ${{ ${{ env.PAYLOAD_CONTEXT }}.target }}
           echo ${{ github.event.client_payload.data.target }}
           echo ${{ github.event.client_payload.data }}
           echo ${{ github.event.client_payload }}
