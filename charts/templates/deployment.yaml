@@ -8,8 +8,11 @@ metadata:
 spec:
   replicas: {{ .Values.replicaCount }}
   template:
+    selector:
+      matchLabels:
+        app: {{ template "fullname" . }}
     metadata:
-      labels:
+      labels: 
         aksappup: {{ default "aks-app-up"  }}
         app: {{ template "fullname" . }}
     spec:
