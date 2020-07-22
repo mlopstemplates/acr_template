@@ -6,8 +6,8 @@ image:
   repository: testRepo
   tag: testTag
   pullPolicy: IfNotPresent
-nameOverride: "testName"
-fullnameOverride: "testFullName"
+nameOverride: "testname"
+fullnameOverride: "testfullname"
 service:
   name: angular
   type: LoadBalancer
