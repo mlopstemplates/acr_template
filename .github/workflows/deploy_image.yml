@@ -13,6 +13,7 @@ jobs:
       env:
         PAYLOAD_CONTEXT: ${{ toJson(github.event.client_payload.data) }}
       run: |
+          echo ${{ github.event.client_payload.data.target }}
           echo "::set-env name=repo_name::${{ github.event.client_payload.data.target.repository }}"
           echo "::set-env name=repo_version::${{ github.event.client_payload.data.target.tag }}"
           echo "::set-env name=image_name::${{ github.event.client_payload.data.target.repository }}:${{ github.event.client_payload.data.target.tag }}"
