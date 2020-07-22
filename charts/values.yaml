@@ -6,13 +6,13 @@ image:
   repository: testRepo
   tag: testTag
   pullPolicy: IfNotPresent
-nameOverride: "nameb"
-fullnameOverride: "fullnamb"
+nameOverride: "namec"
+fullnameOverride: "fullnamc"
 service:
   name: angular
   type: LoadBalancer
-  externalPort: 8086
-  internalPort: 8086
+  externalPort: 8087
+  internalPort: 8087
 resources:
   limits:
     cpu: 100m
