@@ -13,9 +13,12 @@ jobs:
       env:
         PAYLOAD_CONTEXT: ${{ toJson(github.event.client_payload.data) }}
       run: |
-          echo ${{ github.event.client_payload.data.target }}
-          echo ${{ github.event.client_payload.data }}
-          echo ${{ github.event.client_payload }}
+          echo "::set-env name=repo_namewww::${{ github.event.client_payload.data.target }}"
+          echo "::set-env name=repo_naasdmewww::${{ github.event.client_payload.data.request }}"
+          echo "${{ github.event.client_payload.data.target }}"
+          echo "${{ github.event.client_payload.data.request }}"
+          echo "${{ github.event.client_payload.data }}"
+          echo "${{ github.event.client_payload }}"
           echo "::set-env name=repo_name::${{ github.event.client_payload.data.target.repository }}"
           echo "::set-env name=repo_version::${{ github.event.client_payload.data.target.tag }}"
           echo "::set-env name=image_name::${{ github.event.client_payload.data.target.repository }}:${{ github.event.client_payload.data.target.tag }}"
