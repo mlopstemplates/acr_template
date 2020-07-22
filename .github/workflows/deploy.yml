@@ -3,7 +3,7 @@ name: aml-register-model
 
 on:
   repository_dispatch:
-    types: [containerregistry-imagepushed]
+    types: [pull_request]
 
 jobs:
   deploy:
