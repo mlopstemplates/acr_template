@@ -1,4 +1,4 @@
-apiVersion: apps/v1
+apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: {{ template "fullname" . }}
@@ -8,11 +8,8 @@ metadata:
 spec:
   replicas: {{ .Values.replicaCount }}
   template:
-    selector:
-      matchLabels:
-        app: {{ template "fullname" . }}
     metadata:
-      labels: 
+      labels:
         aksappup: {{ default "aks-app-up"  }}
         app: {{ template "fullname" . }}
     spec:
