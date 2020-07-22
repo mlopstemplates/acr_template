@@ -7,7 +7,7 @@ jobs:
         steps:
         # checkout the repo
         - name: 'Checkout GitHub Action'
-          uses: actions/checkout@master
+          uses: actions/checkout@v2
           
         - name: Create Event Subscription
           id: azure_eventgridsubscriber
