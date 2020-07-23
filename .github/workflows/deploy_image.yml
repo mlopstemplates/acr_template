@@ -11,7 +11,7 @@ jobs:
     
     - name: Check variables
       env:
-        PAYLOAD_CONTEXT: ${{ toJson(github.event.client_payload.data) }}
+        PAYLOAD_CONTEXT: ${{ toJson(github.event.client_payload) }}
       run: |
           echo  "${{ toJson(github.event.client_payload.data.eventType) }}"
 #     - name: Set Context for Azure Kubernetes Cluster using azure/aks-set-context@v1 action
