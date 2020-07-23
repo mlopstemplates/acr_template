@@ -13,7 +13,7 @@ jobs:
       env:
         PAYLOAD_CONTEXT: ${{ toJson(github.event.client_payload) }}
       run: |
-          echo  "${{ toJson(github.event.client_payload.data) }}"
+          echo  "empty"
 #     - name: Set Context for Azure Kubernetes Cluster using azure/aks-set-context@v1 action
 #       uses: azure/aks-set-context@v1
 #       with:
