@@ -21,4 +21,4 @@ jobs:
       run: |
         echo "${{ env.repo_name }}"
         echo "${{ env.repo_version }}"
-        echo ""${{ env.image_name }}"    
+        echo "${{ env.image_name }}"    
