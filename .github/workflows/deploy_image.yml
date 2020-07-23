@@ -13,7 +13,9 @@ jobs:
       env:
         PAYLOAD_CONTEXT: ${{ toJson(github.event.client_payload) }}
       run: |
-          echo  "empty"
+          echo "::set-env name=repo_name::${{ secrets.REGISTRY_LOGIN_SERVER }}.${{ github.event.client_payload.data.target.repository }}"
+          echo "::set-env name=repo_version::${{ github.event.client_payload.data.target.tag }}"
+          echo "::set-env name=image_name::${{ secrets.REGISTRY_LOGIN_SERVER }}.${{ github.event.client_payload.data.target.repository }}:${{ github.event.client_payload.data.target.tag }}"
 #     - name: Set Context for Azure Kubernetes Cluster using azure/aks-set-context@v1 action
 #       uses: azure/aks-set-context@v1
 #       with:
