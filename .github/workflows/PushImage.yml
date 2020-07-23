@@ -1,4 +1,4 @@
-on: [pull_request]
+on: [push]
 name: Linux_Container_Workflow
 
 jobs:
@@ -16,8 +16,8 @@ jobs:
             azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
             events_to_subscribe: |
                 Microsoft.ContainerRegistry.ImagePushed
-            provider_type: "Microsoft.ContainerRegistry/registries/acrtest22"
-            resource_group: "acrtest"
+            provider_type: "Microsoft.ContainerRegistry/registries/a11144"
+            resource_group: "testacragain"
             pattoken: ${{secrets.PATTOKEN}}
                   
         - name: 'Login via Azure CLI'
