@@ -26,8 +26,8 @@ jobs:
       uses: azure/aks-set-context@v1
       with:
         creds: '${{ secrets.AZURE_CREDENTIALS }}'
-        cluster-name: k8cluster
-        resource-group: flowtest
+        cluster-name: aks
+        resource-group: testacr
     
     - uses: Azure/k8s-create-secret@v1
       with:
