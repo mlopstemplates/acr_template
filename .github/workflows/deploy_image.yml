@@ -27,7 +27,7 @@ jobs:
       with:
         creds: '${{ secrets.AZURE_CREDENTIALS }}'
         cluster-name: k8clust
-        resource-group: akstest
+        resource-group: ${{ secrets.RESOURCE_GROUP }}
     
     - uses: Azure/k8s-create-secret@v1
       with:
@@ -44,7 +44,7 @@ jobs:
         overrides: |     
           image.repository: ${{ env.repo_name }}
           image.tag: ${{ env.repo_version }}
-        releaseName: test
+        releaseName: test2
       id: bake
 
     - uses: Azure/k8s-deploy@v1
