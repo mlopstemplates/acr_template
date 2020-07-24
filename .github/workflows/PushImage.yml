@@ -11,11 +11,11 @@ jobs:
           
         - name: Create Event Subscription
           id: azure_eventgridsubscriber
-          uses: vivishno/azure_eventgridsubscriber@master
+          uses: mlopstemplates/azure_eventgridsubscriber@master
           with:
             azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
-            provider_type: "Microsoft.ContainerRegistry/registries/acr2222"
-            resource_group: "flowtest"
+            provider_type: "Microsoft.ContainerRegistry/registries/tryact"
+            resource_group: "testacr"
             pattoken: ${{secrets.PATTOKEN}}
                   
         - name: 'Login via Azure CLI'
@@ -31,5 +31,5 @@ jobs:
             password: ${{ secrets.REGISTRY_PASSWORD }}
         - run: |
             docker pull houssemdocker/angular-app:latest
-            docker tag houssemdocker/angular-app:latest ${{ secrets.REGISTRY_LOGIN_SERVER }}/my-app4:v1
-            docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/my-app4:v1
+            docker tag houssemdocker/angular-app:latest ${{ secrets.REGISTRY_LOGIN_SERVER }}/my-app5:v1
+            docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/my-app5:v1
