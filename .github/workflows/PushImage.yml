@@ -14,8 +14,8 @@ jobs:
           uses: mlopstemplates/azure_eventgridsubscriber@master 
           with:
             azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
-            provider_type: "Microsoft.ContainerRegistry/registries/abcd022"
-            resource_group: "testacr"
+            provider_type: "Microsoft.ContainerRegistry/registries/abcd111"
+            resource_group: "a2"
             pattoken: ${{secrets.PATTOKEN}}
                   
         - name: 'Login via Azure CLI'
