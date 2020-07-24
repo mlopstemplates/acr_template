@@ -11,11 +11,11 @@ jobs:
           
         - name: Create Event Subscription
           id: azure_eventgridsubscriber
-          uses: vivishno/azure_eventgridsubscriber@master 
+          uses: mlopstemplates/azure_eventgridsubscriber@master 
           with:
             azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
-            provider_type: "Microsoft.ContainerRegistry/registries/tryingace22"
-            resource_group: "a4"
+            provider_type: "Microsoft.ContainerRegistry/registries/zvivi"
+            resource_group: "a5"
             pattoken: ${{secrets.PATTOKEN}}
                   
         - name: 'Login via Azure CLI'
