@@ -85,5 +85,5 @@ This will generate the following JSON output:
   "username": "<GUID>"
 }
 ```
--REGISTRY_LOGIN_SERVER will be {{username}}.azurecr.io
--REGISTRY_PASSWORD any of the passwords in output can be used
+- REGISTRY_LOGIN_SERVER will be {{username}}.azurecr.io
+- REGISTRY_PASSWORD any of the passwords in output can be used
