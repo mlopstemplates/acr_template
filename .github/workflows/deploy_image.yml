@@ -26,7 +26,7 @@ jobs:
       uses: azure/aks-set-context@v1
       with:
         creds: '${{ secrets.AZURE_CREDENTIALS }}'
-        cluster-name: finalclust
+        cluster-name: aksclust
         resource-group: ${{ secrets.RESOURCE_GROUP }}
     
     - uses: Azure/k8s-create-secret@v1
@@ -44,7 +44,7 @@ jobs:
         overrides: |     
           image.repository: ${{ env.repo_name }}
           image.tag: ${{ env.repo_version }}
-        releaseName: test2
+        releaseName: test01
       id: bake
 
     - uses: Azure/k8s-deploy@v1
