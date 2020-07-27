@@ -42,19 +42,13 @@ This will generate the following JSON output:
 
 Add this JSON output as [a secret](https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets#creating-encrypted-secrets) with the name `AZURE_CREDENTIALS` in your GitHub repository:
 
-<p align="center">
-  <img src="docs/images/secrets.png" alt="GitHub Template repository" width="700"/>
-</p>
-
 To do so, click on the Settings tab in your repository, then click on Secrets and finally add the new secret with the name `AZURE_CREDENTIALS` to your repository.
 
 Please follow [this link](https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets#creating-encrypted-secrets) for more details. 
 
 #### {{PATTOKEN}} ->To Allow Azure to trigger a GitHub Workflow
  We also need GH PAT token with repo access so that we can trigger a GH workflow when the training is completed on Azure Machine Learning. Add the PAT token with as [a secret](https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets#creating-encrypted-secrets) with the name `PATTOKEN` in your GitHub repository:
- <p align="center">
-  <img src="docs/images/pat_secret.png" alt="GitHub Template repository" width="700"/>
-</p>
+
 
 #### {{RESOURCE_GROUP}} -> Resource group where resources reside
 To avoid adding resource group name in multiple places it has made a github secret.User needs to enter resource group name where resources azure container registry and azure kubernetes cluster have been created.
