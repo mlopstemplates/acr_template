@@ -90,3 +90,7 @@ There are two workflow files in this repo
 #### Deploy_image.yml -> triggers when an image is pushed to subscribed acr
   - This workflow is trigerred whenever an image is pushed to acr subscribed by event grid.
   - The image pushed is deployed to azure kubernetes cluster specified in this workflow
+
+### 4. Deployment parameters
+ The deployment parameters related to deployment to aks can be changed if required by updating values in the following file-
+ - charts/values.yaml
