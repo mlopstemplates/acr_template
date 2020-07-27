@@ -90,9 +90,9 @@ This will generate the following JSON output:
 
 ### 3. Running the workflows
 There are two workflow files in this repo
-#### PushImage.yml
+#### PushImage.yml -> triggers on a push to this repository
   - This workflow is used to create an event grid subscription to azure container registry events using azure_eventgridsubscriber action.
   - After subscribing to events a docker image  is built and pushed to azure container registry so that image pushed event is triggered in event grid.
-#### Deploy_image.yml
+#### Deploy_image.yml -> triggers when an image is pushed to subscribed acr
   - This workflow is trigerred whenever an image is pushed to acr subscribed by event grid.
   - The image pushed is deployed to azure kubernetes cluster specified in this workflow
