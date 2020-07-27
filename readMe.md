@@ -10,9 +10,9 @@ Based on the events trigerred the corresponding workflow will be trigerred.
 The following prerequisites are required to make this repository work:
 - Azure subscription
 - Contributor access to the Azure subscription
--Resource group created on azure portal
--Azure container registery resource created in the resource group
--Azure kubernetes cluster service created in the resource group
+- Resource group created on azure portal
+- Azure container registery resource created in the resource group
+- Azure kubernetes cluster service created in the resource group
 
 ### 3. Setting up the required secrets
 
