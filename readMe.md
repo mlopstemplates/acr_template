@@ -14,7 +14,7 @@ The following prerequisites are required to make this repository work:
 - Azure container registery resource created in the resource group
 - Azure kubernetes cluster service created in the resource group
 
-### 3. Setting up the required secrets
+### 2. Setting up the required secrets
 
 #### {{AZURE_CREDENTIALS}}  ->To allow GitHub Actions to access Azure
 An [Azure service principal](https://docs.microsoft.com/en-us/azure/active-directory/develop/app-objects-and-service-principals) needs to be generated. Just go to the Azure Portal to find the details of your resource group. Then start the Cloud CLI or install the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest) on your computer and execute the following command to generate the required credentials:
@@ -87,3 +87,12 @@ This will generate the following JSON output:
 ```
 - REGISTRY_LOGIN_SERVER will be {{username}}.azurecr.io
 - REGISTRY_PASSWORD any of the passwords in output can be used
+
+### 3. Running the workflows
+There are two workflow files in this repo
+#### PushImage.yml
+  - This workflow is used to create an event grid subscription to azure container registry events using azure_eventgridsubscriber action.
+  - After subscribing to events a docker image  is built and pushed to azure container registry so that image pushed event is triggered in event grid.
+#### Deploy_image.yml
+  - This workflow is trigerred whenever an image is pushed to acr subscribed by event grid.
+  - The image pushed is deployed to azure kubernetes cluster specified in this workflow
