@@ -11,7 +11,7 @@ jobs:
           
         - name: Create Event Subscription
           id: azure_eventgridsubscriber
-          uses: mlopstemplates/azure_eventgridsubscriber@master 
+          uses: mlopstemplates/azure_eventgridsubscriber@master
           with:
             azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
             provider_type: "Microsoft.ContainerRegistry/registries/${{ secrets.REGISTRY_USERNAME }}"
