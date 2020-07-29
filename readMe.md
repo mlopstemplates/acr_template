@@ -57,9 +57,8 @@ To avoid adding resource group name in multiple places it has made a github secr
 
 #### Credentials from azure container registry
 Following secrets are credentials required to access azure container registry.
--REGISTRY_LOGIN_SERVER
--REGISTRY_PASSWORD
--REGISTRY_USERNAME
+- REGISTRY_PASSWORD
+- REGISTRY_USERNAME
 
 ```sh
 # To get the above info replace {container-registry-name} with your container registryname 
