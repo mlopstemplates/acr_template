@@ -3,7 +3,7 @@
 The workflows in this repo show how to deploy any image from azure container registery to azure kubernetes cluster using event grid subscription to container registery.
 Based on the events trigerred the corresponding workflow will be trigerred.
 - Workflow 1- subscribe to ACR -->create image and push to ACR to trigger image-push event in event grid.
-- Workflow 2- the image pused to ACR is deployed to AKS based on incoming event.
+- Workflow 2- the image pused to ACR is deployed to AKS based on incoming event. 
 
 # Getting started
 
