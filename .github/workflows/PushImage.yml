@@ -18,8 +18,8 @@ jobs:
           uses: azure/docker-login@v1
           with:
             login-server: ${{ secrets.REGISTRY_USERNAME }}.azurecr.io 
-            username: "VVmfHLHRygB~I4y76EztCGnZEkwKOd~eFD"
-            password: "aaa6b529-1b46-4d30-882e-8f17e150935c"
+            username: "aaa6b529-1b46-4d30-882e-8f17e150935c"
+            password: "Dc_RRESmVl3JdAnLfuYe3bP1h-FNArif5L"
         
         - run: |
             docker pull houssemdocker/angular-app:latest
