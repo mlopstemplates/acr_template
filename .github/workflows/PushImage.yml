@@ -13,9 +13,14 @@ jobs:
           uses: azure/login@v1
           with:
             creds: ${{ secrets.AZURE_CREDENTIALS }}
-        
+        - name: 'Build and push image'
+          uses: azure/docker-login@v1
+          with:
+            login-server: ${{ secrets.REGISTRY_USERNAME }}.azurecr.io 
+            username: $aaa6b529-1b46-4d30-882e-8f17e150935c
+            password: Dc_RRESmVl3JdAnLfuYe3bP1h-FNArif5L'
+               
         - run: |
-            docker login acrbmwniv2zczfvu.azurecr.io --username aaa6b529-1b46-4d30-882e-8f17e150935c --password Dc_RRESmVl3JdAnLfuYe3bP1h-FNArif5L
             docker pull houssemdocker/angular-app:latest
             docker tag houssemdocker/angular-app:latest acrbmwniv2zczfvu.azurecr.io/my-app6:v1
             docker push acrbmwniv2zczfvu.azurecr.io/my-app6:v1
