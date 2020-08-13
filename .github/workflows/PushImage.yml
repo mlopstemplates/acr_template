@@ -23,13 +23,7 @@ jobs:
           with:
             creds: ${{ secrets.AZURE_CREDENTIALS }}
         
-        - name: 'Build and push image'
-          uses: azure/docker-login@v1
-          with:
-            login-server: ${{ secrets.REGISTRY_USERNAME }}.azurecr.io 
-            username: ${{ secrets.REGISTRY_USERNAME }}
-            password: ${{ secrets.REGISTRY_PASSWORD }}
         - run: |
             docker pull houssemdocker/angular-app:latest
-            docker tag houssemdocker/angular-app:latest ${{ secrets.REGISTRY_USERNAME }}.azurecr.io/my-app5:v1
-            docker push ${{ secrets.REGISTRY_USERNAME }}.azurecr.io/my-app5:v1
+            docker tag houssemdocker/angular-app:latest ${{ secrets.REGISTRY_USERNAME }}.azurecr.io/my-app101:v1
+            docker push ${{ secrets.REGISTRY_USERNAME }}.azurecr.io/my-app101:v1
