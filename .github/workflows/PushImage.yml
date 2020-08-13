@@ -8,19 +8,28 @@ jobs:
         # checkout the repo 
         - name: 'Checkout GitHub Action'
           uses: actions/checkout@v2
+          
+        - name: Create Event Subscription
+          id: azure_eventgridsubscriber
+          uses: mlopstemplates/azure_eventgridsubscriber@master
+          with:
+            azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
+            provider_type: "Microsoft.ContainerRegistry/registries/${{ secrets.REGISTRY_USERNAME }}"
+            resource_group: ${{ secrets.RESOURCE_GROUP }}
+            pattoken: ${{secrets.PATTOKEN}}
                   
         - name: 'Login via Azure CLI'
           uses: azure/login@v1
           with:
             creds: ${{ secrets.AZURE_CREDENTIALS }}
+        
         - name: 'Build and push image'
           uses: azure/docker-login@v1
           with:
-            login-server: acrbmwniv2zczfvu.azurecr.io 
-            username: aaa6b529-1b46-4d30-882e-8f17e150935c
-            password: Dc_RRESmVl3JdAnLfuYe3bP1h-FNArif5L
-               
+            login-server: ${{ secrets.REGISTRY_USERNAME }}.azurecr.io 
+            username: ${{ secrets.USERNAME }}
+            password: ${{ secrets.REGISTRY_PASSWORD }}
         - run: |
             docker pull houssemdocker/angular-app:latest
-            docker tag houssemdocker/angular-app:latest acrbmwniv2zczfvu.azurecr.io/my-app7:v1
-            docker push acrbmwniv2zczfvu.azurecr.io/my-app7:v1
+            docker tag houssemdocker/angular-app:latest ${{ secrets.REGISTRY_USERNAME }}.azurecr.io/my-app5:v1
+            docker push ${{ secrets.REGISTRY_USERNAME }}.azurecr.io/my-app5:v1
