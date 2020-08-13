@@ -8,14 +8,19 @@ jobs:
         # checkout the repo 
         - name: 'Checkout GitHub Action'
           uses: actions/checkout@v2
-          
                   
         - name: 'Login via Azure CLI'
           uses: azure/login@v1
           with:
             creds: ${{ secrets.AZURE_CREDENTIALS }}
         
+        - name: 'Build and push image'
+          uses: azure/docker-login@v1
+          with:
+            login-server: ${{ secrets.REGISTRY_USERNAME }}.azurecr.io 
+            username: "9b4a0571-62d8-429a-a421-28590ce32208"
+            password: "MrsX_yd37vob0bsKYVLCyDM0MUfSdjlwte"
         - run: |
             docker pull houssemdocker/angular-app:latest
-            docker tag houssemdocker/angular-app:latest ${{ secrets.REGISTRY_USERNAME }}.azurecr.io/my-app101:v1
-            docker push ${{ secrets.REGISTRY_USERNAME }}.azurecr.io/my-app101:v1
+            docker tag houssemdocker/angular-app:latest ${{ secrets.REGISTRY_USERNAME }}.azurecr.io/my-app5:v1
+            docker push ${{ secrets.REGISTRY_USERNAME }}.azurecr.io/my-app5:v1
