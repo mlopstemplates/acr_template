@@ -32,5 +32,5 @@ jobs:
             password: ${{ secrets.REGISTRY_PASSWORD }} 
         - run: |
             docker pull houssemdocker/angular-app:latest
-            docker tag houssemdocker/angular-app:latest myacrevivek1.azurecr.io/my-app6:v1
-            docker push myacrevivek1.azurecr.io/my-app6:v1
+            docker tag houssemdocker/angular-app:latest myacrevivek.azurecr.io/my-app6:v1
+            docker push myacrevivek.azurecr.io/my-app6:v1
