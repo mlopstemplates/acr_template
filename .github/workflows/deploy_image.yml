@@ -20,7 +20,7 @@ jobs:
           
     - name: Check tag filter
       run: |
-        if [ "$repo_version" = "$filter" ]; then echo "incorrect tag filter supplied"; exit 1 ; fi;
+        if [ "$repo_version" != "$filter" ]; then echo "incorrect tag filter supplied"; exit 1 ; fi;
           
     - name: Set Context for Azure Kubernetes Cluster using azure/aks-set-context@v1 action
       uses: azure/aks-set-context@v1
