@@ -13,7 +13,9 @@ jobs:
       env:
         PAYLOAD_CONTEXT: ${{ toJson(github.event.client_payload) }}
       run: |
-          if '${{ github.event.client_payload.data.target.tag }}' == 'v1'; then exit 0;
+          if ['${{ github.event.client_payload.data.target.tag }}' == 'v1' ]; then
+            exit 0
+          fi
           echo "::set-env name=repo_name::myacrevivek.azurecr.io/${{ github.event.client_payload.data.target.repository }}"
           echo "::set-env name=repo_version::${{ github.event.client_payload.data.target.tag }}"
           echo "::set-env name=image_name::myacrevivek.azurecr.io/${{ github.event.client_payload.data.target.repository }}:${{ github.event.client_payload.data.target.tag }}"
