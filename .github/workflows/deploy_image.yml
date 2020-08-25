@@ -13,13 +13,13 @@ jobs:
       env:
         PAYLOAD_CONTEXT: ${{ toJson(github.event.client_payload) }}
       run: |
-          if ['${{ github.event.client_payload.data.target.tag }}' = 'v1' ]; then echo "experiment id is NULL"; exit 1 ; fi;
           echo "::set-env name=repo_name::myacrevivek.azurecr.io/${{ github.event.client_payload.data.target.repository }}"
           echo "::set-env name=repo_version::${{ github.event.client_payload.data.target.tag }}"
           echo "::set-env name=image_name::myacrevivek.azurecr.io/${{ github.event.client_payload.data.target.repository }}:${{ github.event.client_payload.data.target.tag }}"
           
     - name: Check variables2
       run: |
+        if [ $repo_version="v1" ]; then echo "experiment id is NULL"; exit 1 ; fi;
         echo "${{ env.repo_name }}"
         echo "${{ env.repo_version }}"
         echo "${{ env.image_name }}"    
