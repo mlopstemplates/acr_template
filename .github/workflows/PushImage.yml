@@ -28,7 +28,7 @@ jobs:
         - name: 'Build and push image'
           uses: azure/docker-login@v1
           with:
-            login-server: myacrevivek.azurecr.io 
+            login-server: myacrevivek3.azurecr.io 
             username: ${{ secrets.USERNAME }}
             password: ${{ secrets.REGISTRY_PASSWORD }} 
         - run: |
