@@ -17,12 +17,9 @@ jobs:
           echo "::set-env name=repo_version::${{ github.event.client_payload.data.target.tag }}"
           echo "::set-env name=image_name::myacrevivek.azurecr.io/${{ github.event.client_payload.data.target.repository }}:${{ github.event.client_payload.data.target.tag }}"
           
-    - name: Check variables2
+    - name: Check tag filter
       run: |
-        if [ $repo_version="v1" ]; then echo "experiment id is NULL"; exit 1 ; fi;
-        echo "${{ env.repo_name }}"
-        echo "${{ env.repo_version }}"
-        echo "${{ env.image_name }}"    
+        if [ $repo_version!="v1" ]; then echo "experiment id is NULL"; exit 1 ; fi;
           
     - name: Set Context for Azure Kubernetes Cluster using azure/aks-set-context@v1 action
       uses: azure/aks-set-context@v1
