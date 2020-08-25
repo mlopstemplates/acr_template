@@ -23,7 +23,7 @@ jobs:
              inlineScript: |
                 az deployment group create --resource-group longnameresourcegroup --template-file .cloud/.azure/deploy.json \
                 --parameters .cloud/.azure/deploy.params.json patToken=${{secrets.PATTOKEN}} \
-                containerRegistryName=myacrevivek3 repo_name=$GITHUB_REPOSITORY tagFilter=v1
+                containerRegistryName=myacrevivek3 repo_name=$GITHUB_REPOSITORY
         
         - name: 'Build and push image'
           uses: azure/docker-login@v1
