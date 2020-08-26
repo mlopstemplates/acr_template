@@ -107,15 +107,16 @@ This will generate the following JSON output:
 
 ### 4. Define your workflow parameters
 
-We have precreated a [GitHub Workflow file](/.github/workflows/PushImage.yml) that creates an event grid subscription to our Azure Container Registry ,then pushes an image to this registry. 
+We have precreated a [Workflow PushImage](/.github/workflows/PushImage.yml) that creates an event grid subscription to our Azure Container Registry ,then pushes an image to this registry. 
 
-You need to update the workflow files [GitHub Workflow file](/.github/workflows/PushImage.yml) and [GitHub Workflow file](/.github/workflows/deploy_image.yml) with the below parameters wherever required-
+You need to update the workflow files [Workflow PushImage](/.github/workflows/PushImage.yml) and [Workflow deploy_image](/.github/workflows/deploy_image.yml) with the below parameters wherever required-
 -ACR name(both worflows)
 -Resource group name(both workflows)
--AKS cluster name (only to be updated in [GitHub Workflow file](/.github/workflows/deploy_image.yml))
--tag filter(only to be updated in [GitHub Workflow file](/.github/workflows/deploy_image.yml)
+-AKS cluster name (only to be updated in [Workflow deploy_image](/.github/workflows/deploy_image.yml))
+-tag filter(only to be updated in [Workflow deploy_image](/.github/workflows/deploy_image.yml)
+  This will only allow the images with matching tag to be deployed to kubernetes.
+  
 After updating secrets and workflow parameters changes can be saved by commiting to the workflow.
-
 
 ### 5. Running the workflows
 
