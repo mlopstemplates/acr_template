@@ -138,5 +138,5 @@ Once you save your changes by commit after  updating secrets and worfkflow param
 </p>
 
 ### 6. Deployment parameters
- The deployment parameters related to deployment to aks can be changed if required by updating values in the following file-
+ The deployment parameters related to deployment to aks can be changed accordingly by updating values in the following file-
  - charts/values.yaml
