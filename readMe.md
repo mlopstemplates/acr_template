@@ -2,8 +2,8 @@
 
 The workflows in this repo show how to deploy any image from azure container registery to azure kubernetes cluster using event grid subscription to container registery.
 Based on the events trigerred the corresponding workflow will be trigerred.
-- Workflow 1- subscribe to ACR -->create image and push to ACR to trigger image-push event in event grid.
-- Workflow 2- the image pused to ACR is deployed to AKS based on incoming event. 
+- Workflow 1- subscribe to ACR -->create image and push to ACR which will trigger image-push event in event grid.
+- Workflow 2- the image pushed to ACR is deployed to AKS. 
 
 # Getting started
 
@@ -14,11 +14,19 @@ The following prerequisites are required to make this repository work:
 - Contributor access to the Azure subscription
 - Resource group created on azure portal
 - Azure container registery resource created in the resource group
+- Push level access to container registry using service principal credentials
 - Azure kubernetes cluster service created in the resource group
 
-### 2. Setting up the required secrets
+### 2. Create repository
 
-#### {{AZURE_CREDENTIALS}}  ->To allow GitHub Actions to access Azure
+To get started with ML Ops, simply create a new repo based off this template, by clicking on the green "Use this template" button:
+
+<p align="center">
+  <img src="https://help.github.com/assets/images/help/repository/use-this-template-button.png" alt="GitHub Template repository" width="700"/>
+</p>
+
+### 3. Setting up the required secrets
+#### To allow GitHub Actions to access Azure
 An [Azure service principal](https://docs.microsoft.com/en-us/azure/active-directory/develop/app-objects-and-service-principals) needs to be generated. Just go to the Azure Portal to find the details of your resource group. Then start the Cloud CLI or install the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest) on your computer and execute the following command to generate the required credentials:
 
 ```sh
@@ -44,26 +52,30 @@ This will generate the following JSON output:
 
 Add this JSON output as [a secret](https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets#creating-encrypted-secrets) with the name `AZURE_CREDENTIALS` in your GitHub repository:
 
+<p align="center">
+  <img src="docs/images/secrets.png" alt="GitHub Template repository" width="700"/>
+</p>
+
 To do so, click on the Settings tab in your repository, then click on Secrets and finally add the new secret with the name `AZURE_CREDENTIALS` to your repository.
 
 Please follow [this link](https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets#creating-encrypted-secrets) for more details. 
 
-#### {{PATTOKEN}} ->To Allow Azure to trigger a GitHub Workflow
- We also need GH PAT token with repo access so that we can trigger a GH workflow when the training is completed on Azure Machine Learning. Add the PAT token with as [a secret](https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets#creating-encrypted-secrets) with the name `PATTOKEN` in your GitHub repository:
 
 
-#### {{RESOURCE_GROUP}} -> Resource group where resources reside
-To avoid adding resource group name in multiple places it has made a github secret.User needs to enter resource group name where resources azure container registry and azure kubernetes cluster have been created.
-
-#### Credentials from azure container registry
+#### Credentials required to push/pull to azure container registry
 Following secrets are credentials required to access azure container registry.
 - REGISTRY_PASSWORD
 - REGISTRY_USERNAME
-
+to generate these using the below command
 ```sh
-# To get the above info replace {container-registry-name} with your container registryname 
-az acr credential show -n {container-registry-name}
+# Replace {service-principal-name}, {subscription-id} and {resource-group} {container-registry-name} with your 
+# Azure subscription id and resource group name and any name for your service principle and container registry being used
+az ad sp create-for-rbac --name {service-principal-name} \
+                         --role acrpush \
+                         --scopes /subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.ContainerRegistry/registries/{container-registry-name} \
+                         --sdk-auth
 ```
+
 This will generate the following JSON output:
 ```sh
 {
@@ -81,8 +93,32 @@ This will generate the following JSON output:
 }
 ```
 - REGISTRY_PASSWORD any of the passwords in output can be used
+#### To Allow Azure to trigger a GitHub Workflow
+ We also need GH PAT token with `repo` access so that we can trigger a GH workflow when the training is completed on Azure Machine Learning. 
+ 
+ <p align="center">
+  <img src="docs/images/pat_scope.PNG" alt="GitHub Template repository" width="700"/>
+</p>
+ 
+ Add the PAT token with as [a secret](https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets#creating-encrypted-secrets) with the name `PATTOKEN` in your GitHub repository:
+ <p align="center">
+  <img src="docs/images/pat_secret.png" alt="GitHub Template repository" width="700"/>
+</p>
 
-### 3. Running the workflows
+### 4. Define your workflow parameters
+
+We have precreated a [GitHub Workflow file](/.github/workflows/PushImage.yml) that creates an event grid subscription to our Azure Container Registry ,then pushes an image to this registry. 
+
+You need to update the workflow files [GitHub Workflow file](/.github/workflows/PushImage.yml) and [GitHub Workflow file](/.github/workflows/deploy_image.yml) with the below parameters wherever required-
+-ACR name(both worflows)
+-Resource group name(both workflows)
+-AKS cluster name (only to be updated in [GitHub Workflow file](/.github/workflows/deploy_image.yml))
+-tag filter(only to be updated in [GitHub Workflow file](/.github/workflows/deploy_image.yml)
+After updating secrets and workflow parameters changes can be saved by commiting to the workflow.
+
+
+### 5. Running the workflows
+
 There are two workflow files in this repo
 #### PushImage.yml -> triggers on a push to this repository
   - This workflow is used to create an event grid subscription to azure container registry events using azure_eventgridsubscriber action.
@@ -90,7 +126,12 @@ There are two workflow files in this repo
 #### Deploy_image.yml -> triggers when an image is pushed to subscribed acr
   - This workflow is trigerred whenever an image is pushed to acr subscribed by event grid.
   - The image pushed is deployed to azure kubernetes cluster specified in this workflow
+  
+Once you save your changes by commit after  updating secrets and worfkflow parameters, the [GitHub Workflow file](/.github/workflows/PushImage.yml) will be triggerred.The details of this run can be seen in actions tab.
 
+<p align="center">
+  <img src="docs/images/actions_tab.png" alt="GitHub Actions Tab" width="700"/>
+</p>
 ### 4. Deployment parameters
  The deployment parameters related to deployment to aks can be changed if required by updating values in the following file-
  - charts/values.yaml

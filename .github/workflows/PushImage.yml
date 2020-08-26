@@ -1,35 +1,37 @@
 on: [push]
-name: Linux_Container_Workflow 
+name: Linux_Container_Workflow
 
 jobs:
-    build-and-deploy: 
+    build-and-deploy:
         runs-on: ubuntu-latest 
         steps: 
         # checkout the repo 
         - name: 'Checkout GitHub Action'
           uses: actions/checkout@v2
           
-        - name: Create Event Subscription
-          id: azure_eventgridsubscriber
-          uses: mlopstemplates/azure_eventgridsubscriber@master
-          with:
-            azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
-            provider_type: "Microsoft.ContainerRegistry/registries/${{ secrets.REGISTRY_USERNAME }}"
-            resource_group: ${{ secrets.RESOURCE_GROUP }}
-            pattoken: ${{secrets.PATTOKEN}}
                   
         - name: 'Login via Azure CLI'
           uses: azure/login@v1
           with:
             creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+
+        - name: deploy ML workspace
+          uses: azure/CLI@v1 
+          with:
+             azcliversion: 2.9.1
+             inlineScript: |
+                az deployment group create --resource-group demovivek --template-file .cloud/.azure/deploy.json \
+                --parameters .cloud/.azure/deploy.params.json patToken=${{secrets.PATTOKEN}} \
+                containerRegistryName=myacrevivek3 repo_name=$GITHUB_REPOSITORY
         
         - name: 'Build and push image'
           uses: azure/docker-login@v1
           with:
-            login-server: ${{ secrets.REGISTRY_USERNAME }}.azurecr.io 
-            username: ${{ secrets.REGISTRY_USERNAME }}
-            password: ${{ secrets.REGISTRY_PASSWORD }}
+            login-server: myacrevivek3.azurecr.io 
+            username: ${{ secrets.USERNAME }}
+            password: ${{ secrets.REGISTRY_PASSWORD }} 
         - run: |
             docker pull houssemdocker/angular-app:latest
-            docker tag houssemdocker/angular-app:latest ${{ secrets.REGISTRY_USERNAME }}.azurecr.io/my-app5:v1
-            docker push ${{ secrets.REGISTRY_USERNAME }}.azurecr.io/my-app5:v1
+            docker tag houssemdocker/angular-app:latest myacrevivek3.azurecr.io/my-app6:v1
+            docker push myacrevivek3.azurecr.io/my-app6:v1

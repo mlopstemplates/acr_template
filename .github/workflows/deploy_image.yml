@@ -1,7 +1,7 @@
 name: CI
 on:
   repository_dispatch:
-    types: [containerregistry-imagepushed] 
+    types: [containerregistry-imagepushed]
 
 jobs:
   build:
@@ -13,26 +13,26 @@ jobs:
       env:
         PAYLOAD_CONTEXT: ${{ toJson(github.event.client_payload) }}
       run: |
-          echo "::set-env name=repo_name::${{ secrets.REGISTRY_USERNAME }}.azurecr.io/${{ github.event.client_payload.data.target.repository }}"
+          echo "::set-env name=filter::v1"
+          echo "::set-env name=repo_name::myacrevivek3.azurecr.io/${{ github.event.client_payload.data.target.repository }}"
           echo "::set-env name=repo_version::${{ github.event.client_payload.data.target.tag }}"
-          echo "::set-env name=image_name::${{ secrets.REGISTRY_USERNAME }}.azurecr.io/${{ github.event.client_payload.data.target.repository }}:${{ github.event.client_payload.data.target.tag }}"
-    - name: Check variables2
+          echo "::set-env name=image_name::myacrevivek3.azurecr.io/${{ github.event.client_payload.data.target.repository }}:${{ github.event.client_payload.data.target.tag }}"
+          
+    - name: Check tag filter
       run: |
-        echo "${{ env.repo_name }}"
-        echo "${{ env.repo_version }}"
-        echo "${{ env.image_name }}"    
+        if [ "$repo_version" != "$filter" ]; then echo "incorrect tag filter supplied"; exit 1 ; fi;
           
     - name: Set Context for Azure Kubernetes Cluster using azure/aks-set-context@v1 action
       uses: azure/aks-set-context@v1
       with:
         creds: '${{ secrets.AZURE_CREDENTIALS }}' 
         cluster-name: clust
-        resource-group: ${{ secrets.RESOURCE_GROUP }}
+        resource-group: demovivek
     
     - uses: Azure/k8s-create-secret@v1
       with:
-        container-registry-url: ${{ secrets.REGISTRY_USERNAME }}.azurecr.io
-        container-registry-username: ${{ secrets.REGISTRY_USERNAME }}
+        container-registry-url: myacrevivek3.azurecr.io
+        container-registry-username: ${{ secrets.USERNAME }}
         container-registry-password: ${{ secrets.REGISTRY_PASSWORD }}
         secret-name: demo-k8s-secret
 
