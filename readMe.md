@@ -136,6 +136,7 @@ Once you save your changes by commit after  updating secrets and worfkflow param
 <p align="center">
   <img src="docs/images/actions_tab.png" alt="GitHub Actions Tab" width="700"/>
 </p>
-### 4. Deployment parameters
+
+### 6. Deployment parameters
  The deployment parameters related to deployment to aks can be changed if required by updating values in the following file-
  - charts/values.yaml
