@@ -131,7 +131,7 @@ There are two workflow files in this repo
   - This workflow is trigerred whenever an image is pushed to acr subscribed by event grid.
   - The image pushed is deployed to azure kubernetes cluster specified in this workflow
   
-Once you save your changes by commit after  updating secrets and worfkflow parameters, the [Workflow deploy_image](/.github/workflows/PushImage.yml) will be triggerred.The details of this run can be seen in actions tab.
+Once you save your changes by commit after  updating secrets and worfkflow parameters, the [Workflow PushImage](/.github/workflows/PushImage.yml) will be triggerred.The details of this run can be seen in actions tab.
 
 <p align="center">
   <img src="docs/images/actions_tab.png" alt="GitHub Actions Tab" width="700"/>
