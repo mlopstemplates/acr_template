@@ -66,7 +66,8 @@ Please follow [this link](https://help.github.com/en/actions/configuring-and-man
 Following secrets are credentials required to access azure container registry.
 - REGISTRY_PASSWORD
 - USERNAME
-to generate these using the below command
+
+To generate these use the below command in azure CLI
 ```sh
 # Replace {service-principal-name}, {subscription-id} and {resource-group} {container-registry-name} with your 
 # Azure subscription id and resource group name and any name for your service principle and container registry being used
@@ -92,7 +93,7 @@ This will generate the following JSON output:
 
 These secrets will be added as shown below-
 <p align="center">
-  <img src="docs/images/secrets_acr.png" alt="GitHub Template repository" width="700"/>
+  <img src="docs/images/image.png" alt="GitHub Template repository" width="700"/>
 </p>
 
 #### To Allow Azure to trigger a GitHub Workflow
