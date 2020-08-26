@@ -65,7 +65,7 @@ Please follow [this link](https://help.github.com/en/actions/configuring-and-man
 #### Credentials required to push/pull to azure container registry
 Following secrets are credentials required to access azure container registry.
 - REGISTRY_PASSWORD
-- REGISTRY_USERNAME
+- USERNAME
 to generate these using the below command
 ```sh
 # Replace {service-principal-name}, {subscription-id} and {resource-group} {container-registry-name} with your 
@@ -79,20 +79,22 @@ az ad sp create-for-rbac --name {service-principal-name} \
 This will generate the following JSON output:
 ```sh
 {
-  "passwords": [
-    {
-      "name": "password",
-      "value": "<GUID>"
-    },
-    {
-      "name": "password2",
-      "value": "<GUID>"
-    }
-  ],
-  "username": "<GUID>"
+  "appId": "<GUID>",
+  "displayName": "<GUID>",
+  "name": "<GUID>",
+  "password": "<GUID>",
+  "tenant": "<GUID>"
 }
+
 ```
-- REGISTRY_PASSWORD any of the passwords in output can be used
+- REGISTRY_PASSWORD will be the password generated in the output above.
+- USERNAME will be value of "appId" from the json output
+
+These secrets will be added as shown below-
+<p align="center">
+  <img src="docs/images/secrets_acr.png" alt="GitHub Template repository" width="700"/>
+</p>
+
 #### To Allow Azure to trigger a GitHub Workflow
  We also need GH PAT token with `repo` access so that we can trigger a GH workflow when the training is completed on Azure Machine Learning. 
  
