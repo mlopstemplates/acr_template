@@ -25,7 +25,7 @@ jobs:
       with:
         creds: '${{ secrets.AZURE_CREDENTIALS }}' 
         cluster-name: clust
-        resource-group: demovivek5
+        resource-group: demovivek6
     
     - uses: Azure/k8s-create-secret@v1
       with:
