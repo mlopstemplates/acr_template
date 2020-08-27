@@ -10,8 +10,8 @@ jobs:
     - uses: actions/checkout@v2
     
     - name: Check variables
-      env:
-        PAYLOAD_CONTEXT: ${{ toJson(github.event.client_payload) }}
+      #env:
+       # PAYLOAD_CONTEXT: ${{ toJson(github.event.client_payload) }}
       run: |
           echo "::set-env name=filter::v1"
           echo "::set-env name=repo_name::acrvivek.azurecr.io/${{ github.event.client_payload.data.target.repository }}"
