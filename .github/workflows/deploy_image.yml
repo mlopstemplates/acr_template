@@ -13,10 +13,10 @@ jobs:
       env:
         PAYLOAD_CONTEXT: ${{ toJson(github.event.client_payload) }}
       run: |
-          echo "::set-env name=filter::v2"
-          echo "::set-env name=repo_name::myacrevivek4.azurecr.io/${{ github.event.client_payload.data.target.repository }}"
+          echo "::set-env name=filter::v1"
+          echo "::set-env name=repo_name::acrvivek.azurecr.io/${{ github.event.client_payload.data.target.repository }}"
           echo "::set-env name=repo_version::${{ github.event.client_payload.data.target.tag }}"
-          echo "::set-env name=image_name::myacrevivek4.azurecr.io/${{ github.event.client_payload.data.target.repository }}:${{ github.event.client_payload.data.target.tag }}"
+          echo "::set-env name=image_name::acrvivek.azurecr.io/${{ github.event.client_payload.data.target.repository }}:${{ github.event.client_payload.data.target.tag }}"
           
     - name: Check tag filter
       run: |
@@ -27,11 +27,11 @@ jobs:
       with:
         creds: '${{ secrets.AZURE_CREDENTIALS }}' 
         cluster-name: clust
-        resource-group: demovivek3
+        resource-group: demovivek4
     
     - uses: Azure/k8s-create-secret@v1
       with:
-        container-registry-url: myacrevivek4.azurecr.io
+        container-registry-url: acrvivek.azurecr.io
         container-registry-username: ${{ secrets.USERNAME }}
         container-registry-password: ${{ secrets.REGISTRY_PASSWORD }}
         secret-name: demo-k8s-secret
