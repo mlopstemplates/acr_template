@@ -27,9 +27,11 @@ jobs:
         
         - name: 'Build and push image'
           uses: azure/docker-login@v1
+          env:
+            PAYLOAD_CONTEXT:${{ toJson(secrets.AZURE_CREDENTIALS) }}
           with:
             login-server: acrvivek.azurecr.io 
-            username: ${{ secrets.AZURE_CREDENTIALS.clientId }}
+            username: ${{ PAYLOAD_CONTEXT.clientId }}
             password: ${{ secrets.REGISTRY_PASSWORD }} 
         - run: |
             docker pull houssemdocker/angular-app:latest
