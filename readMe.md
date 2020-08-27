@@ -67,7 +67,7 @@ Following secrets are credentials required to access azure container registry.
 - USERNAME
 
 These can be set using the azure credentials generated above-
-- REGISTRY_PASSWORD will be the password generated in the output above.
+- REGISTRY_PASSWORD will be value of "password" from the azure credentials generated.
 - USERNAME will be value of "clientId" from the azure credentials generated.
 
 These secrets will be added as shown below-
