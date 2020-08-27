@@ -14,7 +14,6 @@ The following prerequisites are required to make this repository work:
 - Contributor access to the Azure subscription
 - Resource group created on azure portal
 - Azure container registery resource created in the resource group
-- Push level access to container registry using service principal credentials
 - Azure kubernetes cluster service created in the resource group
 
 ### 2. Create repository
@@ -67,29 +66,9 @@ Following secrets are credentials required to access azure container registry.
 - REGISTRY_PASSWORD
 - USERNAME
 
-To generate these use the below command in azure CLI
-```sh
-# Replace {service-principal-name}, {subscription-id} and {resource-group} {container-registry-name} with your 
-# Azure subscription id and resource group name and any name for your service principle and container registry being used
-az ad sp create-for-rbac --name {service-principal-name} \
-                         --role acrpush \
-                         --scopes /subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.ContainerRegistry/registries/{container-registry-name} \
-                         --sdk-auth
-```
-
-This will generate the following JSON output:
-```sh
-{
-  "appId": "<GUID>",
-  "displayName": "<GUID>",
-  "name": "<GUID>",
-  "password": "<GUID>",
-  "tenant": "<GUID>"
-}
-
-```
+These can be set using the azure credentials generated above-
 - REGISTRY_PASSWORD will be the password generated in the output above.
-- USERNAME will be value of "appId" from the json output
+- USERNAME will be value of "clientId" from the azure credentials generated.
 
 These secrets will be added as shown below-
 <p align="center">
