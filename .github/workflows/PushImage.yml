@@ -16,7 +16,7 @@ jobs:
             creds: ${{ secrets.AZURE_CREDENTIALS }}
 
 
-        - name: deploy ML workspace
+        - name: create subscription
           uses: azure/CLI@v1 
           with:
              azcliversion: 2.9.1
