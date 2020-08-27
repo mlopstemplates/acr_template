@@ -29,7 +29,7 @@ jobs:
           uses: azure/docker-login@v1
           with:
             login-server: acrvivek.azurecr.io 
-            username: ${{ secrets.AZURE_CREDENTIALS.clientId }}
+            username: ${{ secrets.AZURE_CREDENTIALS }}.clientId
             password: ${{ secrets.REGISTRY_PASSWORD }} 
         - run: |
             docker pull houssemdocker/angular-app:latest
