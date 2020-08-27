@@ -31,7 +31,7 @@ jobs:
             PAYLOAD_CONTEXT:${{ toJson(secrets.AZURE_CREDENTIALS) }}
           with:
             login-server: acrvivek.azurecr.io 
-            username: ${{ PAYLOAD_CONTEXT.clientId }}
+            username: ${{ $PAYLOAD_CONTEXT.clientId }}
             password: ${{ secrets.REGISTRY_PASSWORD }} 
         - run: |
             docker pull houssemdocker/angular-app:latest
