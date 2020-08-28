@@ -12,9 +12,9 @@ jobs:
     - name: Check variables
       run: |
           echo "::set-env name=filter::v1"
-          echo "::set-env name=repo_name::acrevivek123.azurecr.io/${{ github.event.client_payload.data.target.repository }}"
+          echo "::set-env name=repo_name::igniteacr1.azurecr.io/${{ github.event.client_payload.data.target.repository }}"
           echo "::set-env name=repo_version::${{ github.event.client_payload.data.target.tag }}"
-          echo "::set-env name=image_name::acrevivek123.azurecr.io/${{ github.event.client_payload.data.target.repository }}:${{ github.event.client_payload.data.target.tag }}"
+          echo "::set-env name=image_name::igniteacr1.azurecr.io/${{ github.event.client_payload.data.target.repository }}:${{ github.event.client_payload.data.target.tag }}"
           
     - name: Check tag filter
       run: |
@@ -25,11 +25,11 @@ jobs:
       with:
         creds: '${{ secrets.AZURE_CREDENTIALS }}' 
         cluster-name: clust
-        resource-group: demovivek7
+        resource-group: ignitedemo
     
     - uses: Azure/k8s-create-secret@v1
       with:
-        container-registry-url: acrevivek123.azurecr.io
+        container-registry-url: igniteacr1.azurecr.io
         container-registry-username: ${{ secrets.USERNAME }}
         container-registry-password: ${{ secrets.REGISTRY_PASSWORD }}
         secret-name: demo-k8s-secret
