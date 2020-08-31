@@ -110,7 +110,7 @@ After setup is done we can use command line to push image to our container regis
 
  ```sh docker login {{container-registry-name}}.azurecr.io ```
  
-  User will be promted for username and password to access the docker registry server which can be taken from azure credentials generated above-
+  User will be promted for username and password to access the docker registry server which can be taken from azure credentials generated in Step 3-
   - USERNAME: 'clientId' part of credentials generated
   - PASSWORD: 'clientSecret' part of credentials generated
 - Use below command to push image to registry-
