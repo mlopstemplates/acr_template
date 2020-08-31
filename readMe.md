@@ -105,7 +105,13 @@ You need to update the workflow file [deploy_image](/.github/workflows/deploy_im
 ### 5. Running & Testing the trigger
 
 #### Option 1:
-After setup is done we can use command line to push image to our container registry using standard docker push command.
+After setup is done we can use command line to push image to our container registry using following docker login and push command-
+- Use below command to login to your docker regisry-
+ ```sh docker login {{container-registry-name}}.azurecr.io ```
+  User will be promted for username and password to access the docker registry server which can be taken from azure credentials generated above-
+  - USERNAME: 'clientId' part of credentials generated
+  - PASSWORD: 'clientSecret' part of credentials generated
+- 
 This will trigger workflow [deploy_image](/.github/workflows/deploy_image.yml) which will deploy the pushed image to AKS.
 
 #### Option 2:
