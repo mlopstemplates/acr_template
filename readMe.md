@@ -126,7 +126,7 @@ After setup is done we can use command line to push image to our container regis
     
   As a sample user use image 'nginx:latest'  as 'any-docker-image'.This image can be pulled locally using command
   
-       ``` docker pull nginx ```
+     ``` docker pull nginx ```
     
 - Use below command to push image to registry-
     
