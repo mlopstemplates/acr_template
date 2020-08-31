@@ -23,28 +23,3 @@ jobs:
             docker pull houssemdocker/angular-app:latest
             docker tag houssemdocker/angular-app:latest ${{ env.CONTAINER_REGISTRY_NAME }}.azurecr.io/sample_image:v1
             docker push ${{ env.CONTAINER_REGISTRY_NAME }}.azurecr.io/sample_image:v1 
-on: 
- push:
-  paths:
-   - '.github/workflows/push_sample_image.yml' 
-
-env:
- RESOURCE_GROUP: ignitedemo5
- CONTAINER_REGISTRY_NAME: acrevivek123456
- 
-jobs:
-    build-and-deploy:
-        runs-on: ubuntu-latest  
-        steps:
-                  
-        - name: 'Build and push image'
-          uses: azure/docker-login@v1
-          with:
-            login-server: ${{ env.CONTAINER_REGISTRY_NAME }}.azurecr.io 
-            username: ${{ secrets.USERNAME }}
-            password: ${{ secrets.REGISTRY_PASSWORD }} 
-            
-        - run: |
-            docker pull houssemdocker/angular-app:latest
-            docker tag houssemdocker/angular-app:latest ${{ env.CONTAINER_REGISTRY_NAME }}.azurecr.io/sample_image:v1
-            docker push ${{ env.CONTAINER_REGISTRY_NAME }}.azurecr.io/sample_image:v1 
