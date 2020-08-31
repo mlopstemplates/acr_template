@@ -4,9 +4,8 @@ on:
     types: [containerregistry-imagepushed]
     
 # CONFIGURATION
-# For help, go to https://github.com/Azure/Actions
+# Set up the following secrets in your repository:
 #
-# 1. Set up the following secrets in your repository:
 #   CLUST_NAME
 #   RESOURCE_GROUP
 env:
