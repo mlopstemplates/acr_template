@@ -9,7 +9,7 @@ on:
 #   RESOURCE_GROUP
 #   CONTAINER_REGISTRY_NAME
 env:
- RESOURCE_GROUP: ignitefinaldemo              #set this to your resource group name      
+ RESOURCE_GROUP: ignitedemofinal              #set this to your resource group name      
  CONTAINER_REGISTRY_NAME: acredemo12  #set this to your container registry name
  
 jobs:
