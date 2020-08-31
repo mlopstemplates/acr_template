@@ -90,14 +90,15 @@ These secrets will be added as shown below-
 ### 4. Setup and Defining Triggers
 #### Setup
 
-We have precreated a [Workflow setup_acr_trigger](/.github/workflows/setup_acr_trigger.yml) that creates an event grid subscription to our Azure Container Registry.
+We have precreated workflow [setup_acr_trigger](/.github/workflows/setup_acr_trigger.yml) that creates an event grid subscription to our Azure Container Registry.
 User needs to set the following environment variables in this workflow-
 - RESOURCE_GROUP
 - CONTAINER_REGISTRY_NAME
+
 After setting environment variables changes can be saved by commit which will trigger this workflow for setting up required resources.
 
 #### Defining triggers
-You need to update the workflow files [Workflow deploy_image](/.github/workflows/deploy_image.yml) with values for following environment variables-
+You need to update the workflow file [deploy_image](/.github/workflows/deploy_image.yml) with values for following environment variables-
 - RESOURCE_GROUP
 - CLUST_NAME
   
@@ -105,12 +106,12 @@ You need to update the workflow files [Workflow deploy_image](/.github/workflows
 
 #### Option 1:
 After setup is done we can use command line to push image to our container registry using standard docker push command.
-This will trigger [Workflow deploy_image](/.github/workflows/deploy_image.yml) which will deploy the pushed image to AKS.
+This will trigger workflow [deploy_image](/.github/workflows/deploy_image.yml) which will deploy the pushed image to AKS.
 
 #### Option 2:
-A sample workflow [Workflow push_sample_image](/.github/workflows/push_sample_image.yml) is available which can be used to push image provided to ACR.
-We can update this workflow and it gets triggerred on any commit made to this particular workflow.
-This trigger  will push image to ACR and trigger trigger [Workflow deploy_image](/.github/workflows/deploy_image.yml) to deploy the image to AKS.
+A sample workflow [push_sample_image](/.github/workflows/push_sample_image.yml) is available which can be used to push image provided to ACR.
+We can update this workflow trigger it by making a commit to it.
+This trigger will push image to ACR and trigger workflow [deploy_image](/.github/workflows/deploy_image.yml) to deploy the image to AKS.
 
 ### 6. Deployment parameters
  The deployment parameters related to deployment to aks can be changed accordingly by updating values in the following file-
