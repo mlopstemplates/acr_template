@@ -37,7 +37,7 @@ jobs:
     - uses: Azure/k8s-create-secret@v1
       with:
         container-registry-url: ${{ env.HOST_NAME }}
-        container-registry-username: ${{ secrets.USERNAME }}
+        container-registry-username: ${{ secrets.REGISTRY_USERNAME }}
         container-registry-password: ${{ secrets.REGISTRY_PASSWORD }}
         secret-name: demo-k8s-secret
 
