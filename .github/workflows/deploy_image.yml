@@ -2,10 +2,16 @@ name: CI
 on:
   repository_dispatch:
     types: [containerregistry-imagepushed]
-
+    
+# CONFIGURATION
+# For help, go to https://github.com/Azure/Actions
+#
+# 1. Set up the following secrets in your repository:
+#   CLUST_NAME
+#   RESOURCE_GROUP
 env:
-   CLUST_NAME: clust
-   RESOURCE_GROUP: ignitedemo5
+   CLUST_NAME: clust              #set this to your kubernetes cluster name 
+   RESOURCE_GROUP: ignitedemo5    #set this to your resource group name
    HOST_NAME: ${{ github.event.client_payload.data.request.host }}
    REPO_NAME: ${{ github.event.client_payload.data.request.host }}/${{ github.event.client_payload.data.target.repository }}
    REPO_VERSION: ${{ github.event.client_payload.data.target.tag }}
