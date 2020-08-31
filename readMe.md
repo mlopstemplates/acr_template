@@ -124,7 +124,7 @@ After setup is done we can use command line to push image to our container regis
     - 'image-tag' is the tag name specified by user.This will be the tag(version) of the repo specified.
     - 'any-docker-image:tag' can be any existing image which user wants to push to registry.
     
-  As a sample user use image 'nginx:latest'  as 'any-docker-image'.This image can be pulled locally using command
+  As a sample user use image 'nginx:latest'  as 'any-docker-image:tag'.This image can be pulled locally using command
   
      ``` docker pull nginx ```
     
@@ -132,7 +132,7 @@ After setup is done we can use command line to push image to our container regis
     
      ``` docker push {{container-registry-name}}.azurecr.io/{{repo-name}}:{image-tag} ```
   
-This will trigger workflow [deploy_image](/.github/workflows/deploy_image.yml) which will deploy the pushed image to AKS.
+     This will trigger workflow [deploy_image](/.github/workflows/deploy_image.yml) which will deploy the pushed image to AKS.
 
 #### Option 2:
 A sample workflow [push_sample_image](/.github/workflows/push_sample_image.yml) is available which can be used to push image provided to ACR.
