@@ -114,25 +114,19 @@ After setup is done we can use command line to push image to our container regis
     - USERNAME: 'clientId' part of credentials generated
     - PASSWORD: 'clientSecret' part of credentials generated
 
-- Before any docker image is pushed to azure container registry it needs to be converted to the registry format-
-
-  ``` {{container-registry-name}}.azurecr.io/{{repo-name}}:{image-tag} ``` 
-  
+- Before any docker image is pushed to azure container registry it needs to be converted to the registry format.
   This can be done using following command-
   
-  ``` docker tag any-docker-image:tag {{container-registry-name}}.azurecr.io/{{repo-name}}:{image-tag} ```
+  ``` docker tag {{any-docker-image:tag}} {{container-registry-name}}.azurecr.io/{{repo-name}}:{image-tag} ```
   
-  
+    - 'container-registry-name' is the name of the azure container registry user wants to push image to.
     - 'repo-name' can be any name specified by user.This will be the the repository name used to store the image in the registry.
     - 'image-tag' is the tag name specified by user.This will be the tag(version) of the repo specified.
-    - 'any-docker-image' can be any existing image which user wants to push to registry.
+    - 'any-docker-image:tag' can be any existing image which user wants to push to registry.
     
   As a sample user use image 'nginx:latest'  as 'any-docker-image'.This image can be pulled locally using command
   
-       ``` docker pull nginx ``` 
-  
-  
-
+       ``` docker pull nginx ```
     
 - Use below command to push image to registry-
     
