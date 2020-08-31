@@ -2,9 +2,15 @@ on:
  push:
     paths:
       - '.github/workflows/setup_acr_trigger.yml'  
+        
+# CONFIGURATION
+#
+# 1. Set up the following secrets in your repository:
+#   RESOURCE_GROUP
+#   CONTAINER_REGISTRY_NAME
 env:
- RESOURCE_GROUP: ignitedemo5 
- CONTAINER_REGISTRY_NAME: acrevivek123456
+ RESOURCE_GROUP: ignitedemo5               #set this to your resource group name      
+ CONTAINER_REGISTRY_NAME: acrevivek123456  #set this to your container registry name
  
 jobs:
     build-and-deploy:
