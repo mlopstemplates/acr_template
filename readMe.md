@@ -10,7 +10,7 @@ The following prerequisites are required to make this repository work:
 - Azure subscription
 - Contributor access to the Azure subscription
 - Resource group created on azure portal
-- Azure container registery resource created in the resource group
+- Azure container registry resource created in the resource group
 - Azure kubernetes cluster service created in the resource group
 
 ### 2. Create repository
