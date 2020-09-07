@@ -72,6 +72,7 @@ These secrets will be added as shown below-
 #### To Allow Azure to trigger a GitHub Workflow
  We also need GH PAT token with `repo` access so that we can trigger a GH workflow when there is a new image on Azure Container Registry. 
  Steps to setup PAT token can be found [here](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token)
+ 
  Repo section can be updated as shown below-
  <p align="center">
   <img src="docs/images/pat_scope.PNG" alt="GitHub Template repository" width="700"/>
