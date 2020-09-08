@@ -70,8 +70,11 @@ These secrets will be added as shown below-
 </p>
 
 #### To Allow Azure to trigger a GitHub Workflow
- We also need GH PAT token with `repo` access so that we can trigger a GH workflow when there is a new image on Azure Container Registry. 
+ We also need github PAT token with `repo` access so that we can trigger a github workflow when there is a new image on Azure Container Registry. 
+ Steps to setup PAT token can be found [here](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token).
  
+ 
+ Repo section can be updated as shown below-
  <p align="center">
   <img src="docs/images/pat_scope.PNG" alt="GitHub Template repository" width="700"/>
 </p>
@@ -83,16 +86,25 @@ These secrets will be added as shown below-
 
 
 ### 4. Setup and Define Triggers
+
+### Events that trigger workflow
+Github workflows are triggered based on events specified inside workflows. These events can be from inside the github repo like a push commit or can be from outside like a webhook([repository-dispatch](https://docs.github.com/en/developers/webhooks-and-events/webhook-events-and-payloads#repository_dispatch)).
+Details can be found [here](https://docs.github.com/en/actions/reference/events-that-trigger-workflows).
+
 #### Setup Trigger
 
-We have precreated workflow [setup_acr_trigger](/.github/workflows/setup_acr_trigger.yml) that enables our GitHub Repo to listen to events from this ACR. 
-User needs to set the following environment variables in this workflow-
+We have created sample workflow file [setup_acr_trigger](/.github/workflows/setup_acr_trigger.yml) that deploys resources required for setup.
+Setup involves creating an event grid subscription to the ACR specified in workflow.
+Creating this subscription will allow workflows to get triggered on events occuring in ACR subscribed.
+Only workflows having repository dispatch event `containerregistry-imagepushed` will be triggered.
+
+User needs to set the following environment variables in [setup_acr_trigger](/.github/workflows/setup_acr_trigger.yml) workflow-
 - RESOURCE_GROUP
 - CONTAINER_REGISTRY_NAME
 After setting environment variables changes can be saved by commit which will trigger this workflow for required setup.
 
 #### Define Trigger
-We have precreated workflow file [deploy_image](/.github/workflows/deploy_image.yml#L3) with the necessary trigger on ACR set. You need to update this workflow file [deploy_image](/.github/workflows/deploy_image.yml) with values for following environment variables-
+We have created sample workflow file [deploy_image](/.github/workflows/deploy_image.yml#L3) with the necessary trigger on ACR set. You need to update this workflow file [deploy_image](/.github/workflows/deploy_image.yml) with values for following environment variables-
 - RESOURCE_GROUP
 - CLUSTER_NAME
 
