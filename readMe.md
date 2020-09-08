@@ -86,12 +86,17 @@ These secrets will be added as shown below-
 
 
 ### 4. Setup and Define Triggers
+
+### Events that trigger workflow
+Github workflows are triggered based on events specified inside workflows.These events can be from inside the github repo like a push commit or can be from outside like a webhook([repository-dispatch](https://docs.github.com/en/developers/webhooks-and-events/webhook-events-and-payloads#repository_dispatch)).
+Details can be found [here](https://docs.github.com/en/actions/reference/events-that-trigger-workflows)
+
 #### Setup Trigger
 
 We have precreated workflow [setup_acr_trigger](/.github/workflows/setup_acr_trigger.yml) that deploys resources required for setup.
 Setup involves creating an event grid subscription to the ACR specified in workflow.
 Creating this subscription will allow workflows to get triggered on events occuring in ACR subscribed.
-Only workflows having repo dispatch event `containerregistry-imagepushed` will be triggerred.
+Only workflows having repository dispatch event `containerregistry-imagepushed` will be triggerred.
 
 User needs to set the following environment variables in [setup_acr_trigger](/.github/workflows/setup_acr_trigger.yml) workflow-
 - RESOURCE_GROUP
