@@ -8,7 +8,7 @@ on:
 # 1. Set up the following secrets in your repository:
 #   CONTAINER_REGISTRY_NAME
 env:
- CONTAINER_REGISTRY_NAME: your-registry-name  #set this to your container registry name
+ CONTAINER_REGISTRY_NAME:  myclustacr1 #set this to your container registry name
  
 jobs:
     build-and-deploy:
@@ -18,7 +18,7 @@ jobs:
         - name: 'Build and push image'
           uses: azure/docker-login@v1
           with:
-            login-server: ${{ env.CONTAINER_REGISTRY_NAME }}.azurecr.io 
+            login-server: ${{ env.CONTAINER_REGISTRY_NAME }}.azurecr.io  
             username: ${{ secrets.REGISTRY_USERNAME }}
             password: ${{ secrets.REGISTRY_PASSWORD }} 
             
